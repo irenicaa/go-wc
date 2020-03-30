@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"unicode"
 )
 
 func main() {
@@ -20,5 +21,20 @@ func main() {
 		}
 
 		fmt.Print(line)
+
+		count := 0
+		wasSpace := true
+		for _, symbol := range line {
+			if unicode.IsSpace(symbol) {
+				if !wasSpace {
+					count++
+				}
+				wasSpace = true
+			} else {
+				wasSpace = false
+			}
+		}
+
+		fmt.Println(count)
 	}
 }
