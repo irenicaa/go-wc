@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	count := 0
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		line, err := reader.ReadString('\n')
@@ -22,12 +23,12 @@ func main() {
 
 		fmt.Print(line)
 
-		count := 0
+		countInLine := 0
 		wasSpace := true
 		for _, symbol := range line {
 			if unicode.IsSpace(symbol) {
 				if !wasSpace {
-					count++
+					countInLine++
 				}
 				wasSpace = true
 			} else {
@@ -35,6 +36,10 @@ func main() {
 			}
 		}
 
-		fmt.Println(count)
+		fmt.Println(countInLine)
+
+		count += countInLine
 	}
+
+	fmt.Println(count)
 }
