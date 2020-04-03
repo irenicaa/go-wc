@@ -7,12 +7,14 @@ import (
 	"log"
 	"os"
 	"unicode"
+	"unicode/utf8"
 )
 
 func main() {
 	lineCount := 0
 	wordCount := 0
 	symbolCount := 0
+	runeCount := 0
 
 	reader := bufio.NewReader(os.Stdin)
 	for {
@@ -45,7 +47,8 @@ func main() {
 		lineCount++
 		wordCount += wordCountInLine
 		symbolCount += len(line)
+		runeCount += utf8.RuneCountInString(line)
 	}
 
-	fmt.Println(lineCount, wordCount, symbolCount)
+	fmt.Println(lineCount, wordCount, symbolCount, runeCount)
 }
