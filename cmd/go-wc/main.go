@@ -13,7 +13,7 @@ import (
 func main() {
 	lineCount := 0
 	wordCount := 0
-	symbolCount := 0
+	byteCount := 0
 	runeCount := 0
 
 	reader := bufio.NewReader(os.Stdin)
@@ -41,9 +41,9 @@ func main() {
 
 		lineCount++
 		wordCount += wordCountInLine
-		symbolCount += len(line)
+		byteCount += len(line)
 		runeCount += utf8.RuneCountInString(line)
 	}
 
-	fmt.Println(lineCount, wordCount, symbolCount, runeCount)
+	fmt.Println(lineCount, wordCount, byteCount, runeCount)
 }
