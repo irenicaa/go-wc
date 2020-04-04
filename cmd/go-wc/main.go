@@ -6,8 +6,9 @@ import (
 	"io"
 	"log"
 	"os"
-	"unicode"
 	"unicode/utf8"
+
+	wc "github.com/irenicaa/go-wc"
 )
 
 func main() {
@@ -26,21 +27,8 @@ func main() {
 			log.Fatal(err)
 		}
 
-		wordCountInLine := 0
-		wasSpace := true
-		for _, symbol := range line {
-			if unicode.IsSpace(symbol) {
-				if !wasSpace {
-					wordCountInLine++
-				}
-				wasSpace = true
-			} else {
-				wasSpace = false
-			}
-		}
-
 		lineCount++
-		wordCount += wordCountInLine
+		wordCount += wc.CountWords(line)
 		byteCount += len(line)
 		runeCount += utf8.RuneCountInString(line)
 	}
