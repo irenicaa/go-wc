@@ -26,8 +26,6 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Print(line)
-
 		wordCountInLine := 0
 		wasSpace := true
 		for _, symbol := range line {
@@ -39,10 +37,7 @@ func main() {
 			} else {
 				wasSpace = false
 			}
-
 		}
-
-		fmt.Println(wordCountInLine)
 
 		lineCount++
 		wordCount += wordCountInLine
