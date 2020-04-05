@@ -29,5 +29,5 @@ func main() {
 		stats.RuneCount += utf8.RuneCountInString(line)
 	}
 
-	fmt.Println(stats.LineCount, stats.WordCount, stats.ByteCount, stats.RuneCount)
+	fmt.Println(stats)
 }

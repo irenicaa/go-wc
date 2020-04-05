@@ -1,6 +1,9 @@
 package wc
 
-import "unicode"
+import (
+	"fmt"
+	"unicode"
+)
 
 // Stats ...
 type Stats struct {
@@ -8,6 +11,15 @@ type Stats struct {
 	WordCount int
 	ByteCount int
 	RuneCount int
+}
+
+func (stats Stats) String() string {
+	return fmt.Sprint(
+		stats.LineCount,
+		stats.WordCount,
+		stats.ByteCount,
+		stats.RuneCount,
+	)
 }
 
 // CountWords ...
