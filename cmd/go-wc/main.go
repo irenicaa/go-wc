@@ -12,11 +12,7 @@ import (
 )
 
 func main() {
-	lineCount := 0
-	wordCount := 0
-	byteCount := 0
-	runeCount := 0
-
+	stats := wc.Stats{}
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		line, err := reader.ReadString('\n')
@@ -27,11 +23,11 @@ func main() {
 			log.Fatal(err)
 		}
 
-		lineCount++
-		wordCount += wc.CountWords(line)
-		byteCount += len(line)
-		runeCount += utf8.RuneCountInString(line)
+		stats.LineCount++
+		stats.WordCount += wc.CountWords(line)
+		stats.ByteCount += len(line)
+		stats.RuneCount += utf8.RuneCountInString(line)
 	}
 
-	fmt.Println(lineCount, wordCount, byteCount, runeCount)
+	fmt.Println(stats.LineCount, stats.WordCount, stats.ByteCount, stats.RuneCount)
 }
