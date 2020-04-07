@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
 	"log"
 	"os"
 
@@ -11,18 +9,9 @@ import (
 )
 
 func main() {
-	stats := wc.Stats{}
-	reader := bufio.NewReader(os.Stdin)
-	for {
-		line, err := reader.ReadString('\n')
-		if err != nil {
-			if err == io.EOF {
-				break
-			}
-			log.Fatal(err)
-		}
-
-		stats.AnalyzeLine(line)
+	stats, err := wc.AnalyzeReader(os.Stdin)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	fmt.Println(stats)

@@ -1,7 +1,9 @@
 package wc
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"unicode"
 	"unicode/utf8"
 )
@@ -47,4 +49,23 @@ func CountWords(text string) int {
 	}
 
 	return wordCountInLine
+}
+
+// AnalyzeReader ...
+func AnalyzeReader(reader io.Reader) (Stats, error) {
+	stats := Stats{}
+	bufReader := bufio.NewReader(reader)
+	for {
+		line, err := bufReader.ReadString('\n')
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return Stats{}, err
+		}
+
+		stats.AnalyzeLine(line)
+	}
+
+	return stats, nil
 }
