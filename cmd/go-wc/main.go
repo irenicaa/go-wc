@@ -6,7 +6,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"unicode/utf8"
 
 	wc "github.com/irenicaa/go-wc"
 )
@@ -23,10 +22,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		stats.LineCount++
-		stats.WordCount += wc.CountWords(line)
-		stats.ByteCount += len(line)
-		stats.RuneCount += utf8.RuneCountInString(line)
+		stats.AnalyzeLine(line)
 	}
 
 	fmt.Println(stats)

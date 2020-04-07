@@ -3,6 +3,7 @@ package wc
 import (
 	"fmt"
 	"unicode"
+	"unicode/utf8"
 )
 
 // Stats ...
@@ -20,6 +21,14 @@ func (stats Stats) String() string {
 		stats.ByteCount,
 		stats.RuneCount,
 	)
+}
+
+// AnalyzeLine ...
+func (stats *Stats) AnalyzeLine(line string) {
+	stats.LineCount++
+	stats.WordCount += CountWords(line)
+	stats.ByteCount += len(line)
+	stats.RuneCount += utf8.RuneCountInString(line)
 }
 
 // CountWords ...
