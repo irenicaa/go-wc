@@ -16,8 +16,13 @@ func TestCountWords_withFewWords(test *testing.T) {
 	assert.Equal(test, 3, count)
 }
 
+func TestCountWords_withSpacesAtTheStart(test *testing.T) {
+	count := CountWords("   one two three")
+	assert.Equal(test, 2, count)
+}
+
 func TestCountWords_withSpacesAtTheEnd(test *testing.T) {
-	count := CountWords("one two three ")
+	count := CountWords("one two three   ")
 	assert.Equal(test, 3, count)
 }
 
@@ -31,18 +36,13 @@ func TestCountWords_withFewSpaces(test *testing.T) {
 	assert.Equal(test, 0, count)
 }
 
-func TestCountWords_withSpacesAtTheBegin(test *testing.T) {
-	count := CountWords("   one two")
-	assert.Equal(test, 2, count)
-}
-
 func TestCountWords_withDoubleSpaces(test *testing.T) {
 	count := CountWords("one  two  three")
 	assert.Equal(test, 3, count)
 }
 
-func TestCountWords_withTab(test *testing.T) {
-	count := CountWords("one	two	three")
+func TestCountWords_withTabs(test *testing.T) {
+	count := CountWords("one\ttwo\tthree")
 	assert.Equal(test, 3, count)
 }
 
