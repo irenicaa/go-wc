@@ -18,7 +18,7 @@ func TestCountWords_withFewWords(test *testing.T) {
 
 func TestCountWords_withSpacesAtTheStart(test *testing.T) {
 	count := CountWords("   one two three")
-	assert.Equal(test, 2, count)
+	assert.Equal(test, 3, count)
 }
 
 func TestCountWords_withSpacesAtTheEnd(test *testing.T) {

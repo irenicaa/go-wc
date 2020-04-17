@@ -45,6 +45,10 @@ func CountWords(text string) int {
 		wasSpace = isSpace
 	}
 
+	if !wasSpace {
+		wordCountInLine++
+	}
+
 	return wordCountInLine
 }
 
