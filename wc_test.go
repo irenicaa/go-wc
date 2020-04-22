@@ -3,6 +3,7 @@ package wc
 import (
 	"strings"
 	"testing"
+	"testing/iotest"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -84,4 +85,21 @@ func TestAnalyzeReader_withoutTrailingLineBreak(test *testing.T) {
 	wantStats := Stats{LineCount: 1, WordCount: 3, ByteCount: 13, RuneCount: 13}
 	assert.Equal(test, wantStats, stats)
 	assert.NoError(test, err)
+}
+
+func TestAnalyzeReader_withFewLines(test *testing.T) {
+	text := "one two three\nfour five\n"
+	stats, err := AnalyzeReader(strings.NewReader(text))
+
+	wantStats := Stats{LineCount: 2, WordCount: 5, ByteCount: 24, RuneCount: 24}
+	assert.Equal(test, wantStats, stats)
+	assert.NoError(test, err)
+}
+
+func TestAnalyzeReader_withError(test *testing.T) {
+	text := "one two three\n"
+	stats, err := AnalyzeReader(iotest.TimeoutReader(strings.NewReader(text)))
+
+	assert.Equal(test, Stats{}, stats)
+	assert.Error(test, err)
 }
