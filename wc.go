@@ -58,13 +58,13 @@ func AnalyzeReader(reader io.Reader) (Stats, error) {
 	for {
 		line, err := bufReader.ReadString('\n')
 		if err != nil {
-			if err == io.EOF {
-				if line != "" {
-					stats.AnalyzeLine(line)
-				}
+			if err != io.EOF {
+				return Stats{}, err
+			}
+			//err == EOF
+			if line == "" {
 				break
 			}
-			return Stats{}, err
 		}
 
 		stats.AnalyzeLine(line)
