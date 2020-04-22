@@ -61,7 +61,8 @@ func AnalyzeReader(reader io.Reader) (Stats, error) {
 			if err != io.EOF {
 				return Stats{}, err
 			}
-			//err == EOF
+
+			// err == EOF
 			if line == "" {
 				break
 			}

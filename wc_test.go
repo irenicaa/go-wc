@@ -53,6 +53,13 @@ func TestCountWords_withUnicode(test *testing.T) {
 	assert.Equal(test, 3, count)
 }
 
+func TestStats_String(test *testing.T) {
+	stats := Stats{LineCount: 1, WordCount: 2, ByteCount: 3, RuneCount: 4}
+	text := stats.String()
+
+	assert.Equal(test, "1 2 3 4", text)
+}
+
 func TestStats_AnalyzeLine(test *testing.T) {
 	stats := Stats{LineCount: 1, WordCount: 2, ByteCount: 3, RuneCount: 4}
 	stats.AnalyzeLine("one two three")
