@@ -44,7 +44,6 @@ func CountWords(text string) int {
 		}
 		wasSpace = isSpace
 	}
-
 	if !wasSpace {
 		wordCountInLine++
 	}
@@ -60,6 +59,9 @@ func AnalyzeReader(reader io.Reader) (Stats, error) {
 		line, err := bufReader.ReadString('\n')
 		if err != nil {
 			if err == io.EOF {
+				if line != "" {
+					stats.AnalyzeLine(line)
+				}
 				break
 			}
 			return Stats{}, err

@@ -1,6 +1,7 @@
 package wc
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -65,4 +66,22 @@ func TestStats_AnalyzeLine_withUnicode(test *testing.T) {
 
 	wantStats := Stats{LineCount: 2, WordCount: 5, ByteCount: 25, RuneCount: 16}
 	assert.Equal(test, wantStats, stats)
+}
+
+func TestAnalyzeReader_withOneLine(test *testing.T) {
+	text := "one two three\n"
+	stats, err := AnalyzeReader(strings.NewReader(text))
+
+	wantStats := Stats{LineCount: 1, WordCount: 3, ByteCount: 14, RuneCount: 14}
+	assert.Equal(test, wantStats, stats)
+	assert.NoError(test, err)
+}
+
+func TestAnalyzeReader_withoutTrailingLineBreak(test *testing.T) {
+	text := "one two three"
+	stats, err := AnalyzeReader(strings.NewReader(text))
+
+	wantStats := Stats{LineCount: 1, WordCount: 3, ByteCount: 13, RuneCount: 13}
+	assert.Equal(test, wantStats, stats)
+	assert.NoError(test, err)
 }
