@@ -16,6 +16,10 @@ func main() {
 	showSymbols := flag.Bool("m", false, "show symbol count")
 	flag.Parse()
 
+	if !*showLines && !*showWords && !*showBytes && !*showSymbols {
+		*showLines, *showWords, *showBytes, *showSymbols = true, true, true, true
+	}
+
 	stats, err := wc.AnalyzeReader(os.Stdin)
 	if err != nil {
 		log.Fatal(err)
