@@ -2,7 +2,6 @@ package wc
 
 import (
 	"bufio"
-	"fmt"
 	"io"
 	"unicode"
 	"unicode/utf8"
@@ -14,15 +13,6 @@ type Stats struct {
 	WordCount int
 	ByteCount int
 	RuneCount int
-}
-
-func (stats Stats) String() string {
-	return fmt.Sprint(
-		stats.LineCount,
-		stats.WordCount,
-		stats.ByteCount,
-		stats.RuneCount,
-	)
 }
 
 // AnalyzeLine ...
