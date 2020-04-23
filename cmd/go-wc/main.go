@@ -15,7 +15,6 @@ func main() {
 	showBytes := flag.Bool("c", false, "show byte count")
 	showSymbols := flag.Bool("m", false, "show symbol count")
 	flag.Parse()
-
 	if !*showLines && !*showWords && !*showBytes && !*showSymbols {
 		*showLines, *showWords, *showBytes, *showSymbols = true, true, true, true
 	}
