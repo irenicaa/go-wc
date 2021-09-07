@@ -2,7 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/irenicaa/go-wc?status.svg)](https://godoc.org/github.com/irenicaa/go-wc)
 [![Go Report Card](https://goreportcard.com/badge/github.com/irenicaa/go-wc)](https://goreportcard.com/report/github.com/irenicaa/go-wc)
-[![Build Status](https://travis-ci.org/irenicaa/go-wc.svg?branch=master)](https://travis-ci.org/irenicaa/go-wc)
+[![Build Status](https://app.travis-ci.com/irenicaa/go-wc.svg?branch=master)](https://app.travis-ci.com/irenicaa/go-wc)
 [![codecov](https://codecov.io/gh/irenicaa/go-wc/branch/master/graph/badge.svg)](https://codecov.io/gh/irenicaa/go-wc)
 
 The clone of the Unix wc tool.
